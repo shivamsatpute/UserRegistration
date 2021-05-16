@@ -5,7 +5,12 @@ namespace UserRegistration
 {
     class Program
     {
-
+        public static bool passwordValidation(String password)
+        {
+            String patternPassword = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+            Regex Passregex = new Regex(patternPassword);
+            return Passregex.IsMatch(password);
+        }
         public static bool PhoneNumberValidation(String Pno)
         {
             String PPattern = @"^\+?\d{0,2}\-?\d{4,5}\-?\d{5,6}"; 
@@ -69,8 +74,8 @@ namespace UserRegistration
                 Console.WriteLine("Invalid Email");  
             }
 
-            Console.WriteLine("\nEnter Phone Number :- ");  // Take user input
-            string Pno = Console.ReadLine();      //Store input string veriable
+            Console.WriteLine("\nEnter Phone Number :- ");  
+            string Pno = Console.ReadLine();     
             if (PhoneNumberValidation(Pno))
             {
                 Console.WriteLine("Valid Phone Number");
@@ -78,6 +83,18 @@ namespace UserRegistration
             else
             {
                 Console.WriteLine("Invalid Phone Number");
+            }
+
+            Console.WriteLine("Enter the Password:- ");
+            String password = Console.ReadLine();
+
+            if (passwordValidation(password))
+            {
+                Console.WriteLine("Valid Password");
+            }
+            else
+            {
+                Console.WriteLine("Invalid Password");
             }
         }
     }
