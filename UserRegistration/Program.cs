@@ -5,6 +5,13 @@ namespace UserRegistration
 {
     class Program
     {
+        public static bool EmailValidation(String email)
+        {
+            String Epattern = @"^[a-z]+([-+*.]?[0-9a-z])*@[a-z0-9]+\.(\.?[a-z]{2,}){1,2}$";
+            Regex eregex = new Regex(Epattern); 
+            return eregex.IsMatch(email);
+
+        }
         public static bool NameValidation(String firstName)
         {
             String pattern = "^[A-Z]{1,}[a-z]{2,}$";  
@@ -12,6 +19,7 @@ namespace UserRegistration
             Regex regex = new Regex(pattern);      
             return regex.IsMatch(firstName);    
         }
+
         static void Main(string[] args)  
         {
             Console.WriteLine("Welcome to User Registration");       
@@ -39,6 +47,19 @@ namespace UserRegistration
             else
             {
                 Console.WriteLine("Invalid Last Name");
+            }
+
+
+            Console.WriteLine("Enter Email:- ");  
+            string email = Console.ReadLine();     
+
+            if (EmailValidation(email))   
+            {
+                Console.WriteLine("Valid Email"); 
+            }
+            else
+            {
+                Console.WriteLine("Invalid Email");  
             }
         }
     }
