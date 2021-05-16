@@ -5,6 +5,13 @@ namespace UserRegistration
 {
     class Program
     {
+
+        public static bool PhoneNumberValidation(String Pno)
+        {
+            String PPattern = @"^\+?\d{0,2}\-?\d{4,5}\-?\d{5,6}"; 
+            Regex Pregex = new Regex(PPattern); 
+            return Pregex.IsMatch(Pno);
+        }
         public static bool EmailValidation(String email)
         {
             String Epattern = @"^[a-z]+([-+*.]?[0-9a-z])*@[a-z0-9]+\.(\.?[a-z]{2,}){1,2}$";
@@ -60,6 +67,17 @@ namespace UserRegistration
             else
             {
                 Console.WriteLine("Invalid Email");  
+            }
+
+            Console.WriteLine("\nEnter Phone Number :- ");  // Take user input
+            string Pno = Console.ReadLine();      //Store input string veriable
+            if (PhoneNumberValidation(Pno))
+            {
+                Console.WriteLine("Valid Phone Number");
+            }
+            else
+            {
+                Console.WriteLine("Invalid Phone Number");
             }
         }
     }
